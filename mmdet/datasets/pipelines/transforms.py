@@ -661,6 +661,12 @@ class Normalize:
             dict: Normalized results, 'img_norm_cfg' key is added into
                 result dict.
         """
+        # import cv2
+        # img_to_save = results['img'].copy()
+        # for i in range(len(results['gt_bboxes'])):
+        #     bb = results['gt_bboxes'][i].astype(int)
+        #     img_to_save = cv2.rectangle(img_to_save, (bb[0], bb[1]), (bb[2], bb[3]), 255, 1)
+        # cv2.imwrite(f"./train-tmp/model_input/{results['ori_filename']}", img_to_save)
         for key in results.get('img_fields', ['img']):
             results[key] = mmcv.imnormalize(results[key], self.mean, self.std,
                                             self.to_rgb)
